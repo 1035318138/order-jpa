@@ -1,0 +1,59 @@
+-- `order`.order_header definition
+
+CREATE TABLE `order_header` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键Id',
+  `order_promotion` mediumtext COLLATE utf8mb4_bin COMMENT '交易优惠信息结构体',
+  `address_info` mediumtext COLLATE utf8mb4_bin COMMENT '订单收货地址信息结构体',
+  `pay_info` mediumtext COLLATE utf8mb4_bin COMMENT '交易支付信息结构体',
+  `buyer_info` mediumtext COLLATE utf8mb4_bin COMMENT '订单买家信息结构体',
+  `source_info` mediumtext COLLATE utf8mb4_bin COMMENT '订单来源',
+  `order_info` mediumtext COLLATE utf8mb4_bin COMMENT '交易明细详情',
+  `member_id` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '会员Id',
+  `order_number` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '销售订单编号',
+  `channel_code` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '订单来源渠道',
+  `store_code` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '店铺Code',
+  `order_time` datetime DEFAULT NULL COMMENT '订单时间',
+  `payment_time` datetime DEFAULT NULL COMMENT '付款时间',
+  `trade_end_time` datetime DEFAULT NULL COMMENT '交易结束时间',
+  `payment_status` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '''支付状态',
+  `item_quantity` int(11) DEFAULT NULL COMMENT '商品数量',
+  `product_total_amount` decimal(20,5) DEFAULT '0.00000' COMMENT '商品总额',
+  `promotion_adjustment_total_amount` decimal(20,5) DEFAULT '0.00000' COMMENT '促销优惠金额',
+  `adjustment_total_amount` decimal(20,5) DEFAULT '0.00000' COMMENT '实付金额',
+  `refunded_amount` decimal(20,5) DEFAULT '0.00000' COMMENT '已退款金额',
+  `version` int(10) DEFAULT '0' COMMENT '版本号',
+  `deleted` tinyint(1) DEFAULT '0' COMMENT '是否被删除 0:未删除 1:删除',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `create_user_id` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '创建人Id',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
+  `update_user_id` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '更新人Id',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx_order_header` (`order_number`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='订单头';
+
+
+
+
+-- `order`.order_detail definition
+
+CREATE TABLE `order_detail` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键id',
+  `order_header_id` int(11) DEFAULT NULL COMMENT '关联订单头id',
+  `member_id` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '会员Id',
+  `third_order_number` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '三方订单号',
+  `sku_id` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT 'skuId',
+  `channel_code` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '渠道Code',
+  `sub_order_number` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '明细单号',
+  `item_name` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '商品名称',
+  `item_size` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT 'sku规格',
+  `item_quantity` int(11) DEFAULT NULL COMMENT '商品数量',
+  `item_adjustment_total_price` decimal(20,5) DEFAULT '0.00000' COMMENT '实付金额(如果是退款单 则为退款金额)',
+  `item_sale_price` decimal(20,5) DEFAULT '0.00000' COMMENT '销售单价',
+  `version` int(10) DEFAULT '0' COMMENT '版本号',
+  `deleted` tinyint(1) DEFAULT '0' COMMENT '是否被删除 0:未删除 1:删除',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `create_user_id` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '创建人',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
+  `update_user_id` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '操作人',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='订单详情';

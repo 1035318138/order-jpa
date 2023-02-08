@@ -1,0 +1,15 @@
+server:
+  port: 9998
+spring:
+  datasource:     #数据库相关配置
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3307/order?useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: root
+
+
+
+
+
+
+
