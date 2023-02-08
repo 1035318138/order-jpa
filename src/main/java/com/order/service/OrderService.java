@@ -110,4 +110,8 @@ public class OrderService {
         //模拟分页
         return orderHeaderRepository.findAll(PageRequest.of(0, 10));
     }
+
+    public OrderHeaderEntity queryOrderHeaderByOrderNumber(String orderNumber) {
+        return orderHeaderRepository.findOneByOrderNumber(orderNumber);
+    }
 }

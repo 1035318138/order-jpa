@@ -39,4 +39,9 @@ public class OrderController {
         return orderService.queryOrderHeaderPageList();
     }
 
+    @GetMapping("/queryOrderHeaderByOrderNumber")
+    public OrderHeaderEntity queryOrderHeaderByOrderNumber(@RequestParam String orderNumber){
+        return orderService.queryOrderHeaderByOrderNumber(orderNumber);
+    }
+
 }

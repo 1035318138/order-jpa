@@ -15,4 +15,11 @@ public interface OrderHeaderRepository extends JpaRepository<OrderHeaderEntity,I
      * @return
      */
     OrderHeaderEntity findOneById(Integer id);
+
+    /**
+     * 根据订单号查询订单
+     * @param orderNumber
+     * @return
+     */
+    OrderHeaderEntity findOneByOrderNumber(String orderNumber);
 }
